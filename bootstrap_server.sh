@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script installs the  Kubernetes runtime on a server. This script is required for both Master and Minion Servers
 
 echo "Minion Bootstrap -- Yum updating to current version"
 yum -y update
