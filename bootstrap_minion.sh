@@ -6,7 +6,8 @@ yum -y update
 echo "Minion Bootstrap -- Installing Kubernetes"
 yum -y install kubernetes
 
-echo "Minion Bootstrap -- Enabling and Starting Docker"
+echo "Minion Bootstrap -- Installing, Enabling and Starting Docker"
+yum -y install docker-io
 systemctl enable docker
 systemctl start docker
 
