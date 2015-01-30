@@ -1,0 +1,35 @@
+{
+  "id": "php_controller",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 2,
+    "replicaSelector": {"name": "php_controller"},
+    "podTemplate": {
+      "desiredState": {
+         "manifest": {
+           "version": "v1beta1",
+           "id": "php_controller",
+           "volumes": [
+             {
+                "name": "data",
+                "source": {
+                  "HostDir": {"path": "/opt/php"}
+                }
+              }
+            ],
+           "containers": [{
+             "name": "php-app",
+             "image": "wattsteve/php-with-mysql-ext",
+             "cpu": 100,
+             "ports": [{"containerPort": 80, "hostPort": 80}],
+             "volumeMounts": [{"name":"data", "mountPath": "/var/www/html"}]
+           }]
+         }
+       },
+       "labels": {
+         "name": "php_controller"
+       }
+      }},
+  "labels": {"name": "php_controller"}
+}
