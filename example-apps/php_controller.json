@@ -1,0 +1,27 @@
+{
+  "id": "php_controller",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 2,
+    "replicaSelector": {"name": "php_pod"},
+    "podTemplate": {
+      "desiredState": {
+         "manifest": {
+           "version": "v1beta1",
+           "id": "php_pod",
+           "containers": [{
+             "name": "php_pod",
+             "image": "php-mysql",
+             "cpu": 100,
+             "ports": [{"containerPort": 80, "hostPort": 80}]
+           }]
+         }
+       },
+       "labels": {
+         "name": "php_controller",
+         "uses": "mysql_controller"
+       }
+      }},
+  "labels": {"name": "php_controller"}
+}

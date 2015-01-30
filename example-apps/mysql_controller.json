@@ -1,0 +1,26 @@
+{
+  "id": "mysql_controller",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 2,
+    "replicaSelector": {"name": "mysql_controller"},
+    "podTemplate": {
+      "desiredState": {
+         "manifest": {
+           "version": "v1beta1",
+           "id": "mysql_controller",
+           "containers": [{
+             "name": "somevalue",
+             "image": "tutum/mysql",
+             "cpu": 100,
+             "ports": [{"containerPort": 3306, "hostPort": 3306}]
+           }]
+         }
+       },
+       "labels": {
+         "name": "mysql_controller"
+       }
+      }},
+  "labels": {"name": "mysql_controller"}
+}

@@ -1,0 +1,22 @@
+{   
+"id": "mysql_pod",   
+"kind": "Pod",   
+"apiVersion": "v1beta1",   
+"desiredState": {     
+    "manifest": {       
+        "version": "v1beta1",       
+         "id": "mysql-pod",       
+         "containers": [{         
+               "name": "mysql_pod",
+               "image": "tutum/mysql",
+               "ports": [{          
+                    "containerPort": 3306,           
+                    "hostPort": 3306         
+                }]       
+         }]     
+     }   
+},   
+"labels": {     
+    "name": "mysql_pod"   
+ } 
+}
