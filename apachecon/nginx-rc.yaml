@@ -1,0 +1,29 @@
+  kind: "ReplicationController"
+  apiVersion: "v1beta3"
+  metadata: 
+    name: "nginxrep"
+    labels: 
+      name: "nginxrep"
+  spec: 
+    replicas: 2
+    selector: 
+      name: "nginxrep"
+    template: 
+      metadata: 
+        labels: 
+          name: "nginxrep"
+      spec: 
+        containers: 
+          - name: "nginx-host"
+            image: "dockerfile/nginx"
+            ports:
+                - containerPort: 80
+                  protocol: "TCP"
+            volumeMounts: 
+                - name: "localpath" 
+                  mountPath: "/var/www/html/test"
+        volumes: 
+          - name: "localpath"
+            hostPath: 
+              path: "/opt/data"
+              readonly: false

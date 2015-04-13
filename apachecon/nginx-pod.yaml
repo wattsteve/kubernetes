@@ -1,0 +1,19 @@
+apiVersion: v1beta1
+desiredState:
+  manifest:
+    containers:
+      - name: nginx
+        image: dockerfile/nginx
+        volumeMounts:
+            # name must match the volume name below
+            - name: myshare
+              mountPath: "/var/www/html/test"
+    id: nginx-on-host
+    version: v1beta1
+    volumes:
+      - name: myshare
+        source:
+          HostDir:
+            path: "/opt/data"
+id: nginx-on-host
+kind: Pod

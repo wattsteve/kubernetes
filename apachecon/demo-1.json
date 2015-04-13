@@ -1,0 +1,8 @@
+{
+  "id": "demo-1",
+  "kind": "Minion",
+  "apiVersion": "v1beta1",
+  "labels": {
+    "name": "demo-1-label"
+  }
+}
