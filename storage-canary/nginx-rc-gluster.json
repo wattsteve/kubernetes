@@ -1,0 +1,47 @@
+{
+   "kind":"ReplicationController",
+   "apiVersion":"v1beta3",
+   "metadata":{
+      "name":"nginx-rc-gluster",
+      "labels":{
+         "name":"nginxrep"
+      }
+   },
+   "spec":{
+      "replicas":2,
+      "selector":{
+         "name":"nginxrep",
+	 "file":"gluster"
+      },
+      "template":{
+         "metadata":{
+            "labels":{
+               "name":"nginxrep",
+               "file":"gluster"
+            }
+         },
+         "spec":{
+            "containers": [{
+             "name": "nginx-gluster",
+             "image": "fedora/nginx",
+             "volumeMounts": [
+              {
+               "mountPath": "/usr/share/nginx/html/test",
+               "name": "glusterfsvol"
+              }
+             ]
+           }],
+           "volumes": [
+             {
+                "name": "glusterfsvol",
+                "glusterfs": {
+                  "endpoints": "glusterfs-cluster",
+                  "path": "MyVolume",
+                  "readOnly": true
+                }
+              }
+            ]
+         }
+      }
+   }
+}

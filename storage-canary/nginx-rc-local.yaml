@@ -1,0 +1,32 @@
+  kind: "ReplicationController"
+  apiVersion: "v1beta3"
+  metadata: 
+    name: "nginx-rc-local"
+    labels: 
+      name: "nginxrep"
+      file: "local"
+  spec: 
+    replicas: 2
+    selector: 
+      name: "nginxrep"
+      file: "local"
+    template: 
+      metadata: 
+        labels: 
+          name: "nginxrep"
+          file: "local"
+      spec: 
+        containers: 
+          - name: "nginx-host"
+            image: "fedora/nginx"
+            ports:
+                - containerPort: 80
+                  protocol: "TCP"
+            volumeMounts: 
+                - name: "localpath" 
+                  mountPath: "/usr/share/nginx/html/test"
+        volumes: 
+          - name: "localpath"
+            hostPath: 
+              path: "/opt/data"
+              readonly: false

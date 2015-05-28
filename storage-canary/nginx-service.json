@@ -1,0 +1,25 @@
+{
+   "kind":"Service",
+   "apiVersion":"v1beta3",
+   "metadata":{
+      "name":"nginx-service",
+      "labels":{
+         "name":"nginxrep"
+      }
+   },
+   "spec":{
+      "publicIPs": [
+        "192.168.58.174","192.168.58.176"
+      ],
+      "ports": [
+        {
+          "port":80,
+          "targetPort":80,
+          "protocol":"TCP"
+        }
+      ],
+      "selector":{
+         "name":"nginxrep"
+      }
+   }
+}
