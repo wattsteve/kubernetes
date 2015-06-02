@@ -1,0 +1,13 @@
+apiVersion: v1beta3
+kind: PersistentVolume
+metadata:
+  name: pv0001
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  glusterfs:
+    path: MyVolume
+    endpoints: glusterfs-cluster
+    readOnly: true
