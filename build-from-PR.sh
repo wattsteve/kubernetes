@@ -17,11 +17,8 @@ rm -rf kubernetes
 git clone https://github.com/GoogleCloudPlatform/kubernetes.git
 cd kubernetes
 
-# Add the Cloned Repo from which the branch in the PR was based
+# Add the Official Repo and the Cloned Repo from which the branch in the PR was based
 git remote add mark $REPO
-git fetch origin -v; git fetch upstream -v; git fetch mark -v
-
-# Add the Official Repo
 git remote add upstream https://github.com/GoogleCloudPlatform/kubernetes.git
 git fetch origin -v; git fetch upstream -v; git fetch mark -v
 
